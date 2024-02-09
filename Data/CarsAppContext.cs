@@ -6,6 +6,7 @@ namespace WheelyGoodCars.Data
     internal class CarsAppContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Listing> Listings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
