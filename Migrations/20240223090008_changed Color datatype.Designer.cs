@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WheelyGoodCars.Data;
 
@@ -10,9 +11,11 @@ using WheelyGoodCars.Data;
 namespace WheelyGoodCars.Migrations
 {
     [DbContext(typeof(CarsAppContext))]
-    partial class CarsAppContextModelSnapshot : ModelSnapshot
+    [Migration("20240223090008_changed Color datatype")]
+    partial class changedColordatatype
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

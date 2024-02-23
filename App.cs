@@ -35,7 +35,7 @@ namespace WheelyGoodCars
                         case "Remove Listing":
                             RemoveListing();
                             break;
-                        case "LogOut":
+                        case "Log Out":
                             loggedInUser = null;
                             break;
                         case "Quit":

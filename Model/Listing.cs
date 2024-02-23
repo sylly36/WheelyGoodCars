@@ -17,9 +17,9 @@ namespace WheelyGoodCars.Model
         public int? Doors { get; set; }
         public int? ProductionYear { get; set; }
         public int? Weight { get; set; }
-        public int Color { get; set; }
+        public string Color { get; set; }
 
-        public Listing(string brand, string licensePlate, decimal price, int mileage, int? seats, int? doors, int? productionYear, int? weight, int color) 
+        public Listing(string brand, string licensePlate, decimal price, int mileage, int? seats, int? doors, int? productionYear, int? weight, string color) 
         { 
             this.Brand = brand;
             this.LicensePlate = licensePlate;
