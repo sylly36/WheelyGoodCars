@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WheelyGoodCars.Model;
 using WheelyGoodCars.Data;
+using System.Runtime.ConstrainedExecution;
 
 namespace WheelyGoodCars
 {
@@ -22,10 +23,13 @@ namespace WheelyGoodCars
 
                 while (loggedInUser is User)
                 {
-                    string userChoice = Helpers.Choose("What do you want to do?", new string[] { "All Listings", "Add Listing", "Remove Listing", "Log Out", "Quit" });
+                    string userChoice = Helpers.Choose("\nWhat do you want to do?", new string[] { "Show My Listings", "All Listings", "Add Listing", "Remove Listing", "Log Out", "Quit" });
 
                     switch (userChoice)
                     {
+                        case "Show My Listings":
+                            ShowMyListings();
+                            break;
                         case "All Listings":
                             ShowAll();
                             break;
@@ -64,10 +68,21 @@ namespace WheelyGoodCars
                     break;
             }
         }
+        public void ShowMyListings()
+        {
+
+        }
 
         public void ShowAll()
         {
+            Console.Clear();
+            List<Listing> listings = context.Listings.ToList();
 
+            foreach (Listing listing in listings)
+            {
+                Console.WriteLine(listing);
+            }
+            Helpers.Wait();
         }
 
         public void AddListing()

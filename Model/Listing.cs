@@ -31,5 +31,14 @@ namespace WheelyGoodCars.Model
             this.Weight = weight;
             this.Color = color;
         }
+
+        public override string ToString()
+        {
+            if (ProductionYear != null)
+            {
+                return $"{Id} | {Brand}({LicensePlate}) in {Color}, Cost: {Price}, Milage: {Mileage}, Made in: {ProductionYear}";
+            }
+            return $"{Id} | {Brand}({LicensePlate}) in {Color}, Cost: {Price}, Milage: {Mileage}";
+        }
     }
 }
