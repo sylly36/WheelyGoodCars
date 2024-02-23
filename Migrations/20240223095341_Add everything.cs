@@ -6,11 +6,31 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WheelyGoodCars.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedListings : Migration
+    public partial class Addeverything : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Username = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Password = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.CreateTable(
                 name: "Listings",
                 columns: table => new
@@ -27,13 +47,26 @@ namespace WheelyGoodCars.Migrations
                     Doors = table.Column<int>(type: "int", nullable: true),
                     ProductionYear = table.Column<int>(type: "int", nullable: true),
                     Weight = table.Column<int>(type: "int", nullable: true),
-                    Color = table.Column<int>(type: "int", nullable: false)
+                    Color = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UserListingId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Listings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Listings_Users_UserListingId",
+                        column: x => x.UserListingId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Listings_UserListingId",
+                table: "Listings",
+                column: "UserListingId");
         }
 
         /// <inheritdoc />
@@ -41,6 +74,9 @@ namespace WheelyGoodCars.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Listings");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

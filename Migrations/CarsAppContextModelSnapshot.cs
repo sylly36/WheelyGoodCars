@@ -52,10 +52,15 @@ namespace WheelyGoodCars.Migrations
                     b.Property<int?>("Seats")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserListingId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("Weight")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserListingId");
 
                     b.ToTable("Listings");
                 });
@@ -77,6 +82,22 @@ namespace WheelyGoodCars.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("WheelyGoodCars.Model.Listing", b =>
+                {
+                    b.HasOne("WheelyGoodCars.Model.User", "UserListing")
+                        .WithMany("Listings")
+                        .HasForeignKey("UserListingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserListing");
+                });
+
+            modelBuilder.Entity("WheelyGoodCars.Model.User", b =>
+                {
+                    b.Navigation("Listings");
                 });
 #pragma warning restore 612, 618
         }

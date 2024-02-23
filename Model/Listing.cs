@@ -18,6 +18,7 @@ namespace WheelyGoodCars.Model
         public int? ProductionYear { get; set; }
         public int? Weight { get; set; }
         public string Color { get; set; }
+        public User UserListing { get; set; }
 
         public Listing(string brand, string licensePlate, decimal price, int mileage, int? seats, int? doors, int? productionYear, int? weight, string color) 
         { 

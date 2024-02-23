@@ -23,6 +23,7 @@ namespace WheelyGoodCars
 
                 while (loggedInUser is User)
                 {
+                    Console.Clear();
                     string userChoice = Helpers.Choose("\nWhat do you want to do?", new string[] { "Show My Listings", "All Listings", "Add Listing", "Remove Listing", "Log Out", "Quit" });
 
                     switch (userChoice)
@@ -70,7 +71,21 @@ namespace WheelyGoodCars
         }
         public void ShowMyListings()
         {
+            Console.Clear();
+            Console.WriteLine("Your listings:");
+            List<Listing> listings = context.Listings.ToList();
+            string userListingId = loggedInUser.Id.ToString();
 
+            foreach (Listing listing in listings)
+            {
+                string listingUser = listing.UserListing.ToString();
+
+                if (listingUser == userListingId)
+                {
+                    Console.WriteLine(listing);
+                }            
+            }
+            Helpers.Wait();
         }
 
         public void ShowAll()
