@@ -31,6 +31,7 @@ namespace WheelyGoodCars.Model
             this.ProductionYear = productionYear;
             this.Weight = weight;
             this.Color = color;
+            this.UserListing = UserListing;
         }
 
         public override string ToString()

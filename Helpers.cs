@@ -43,6 +43,28 @@ internal class Helpers
         return result;
     }
 
+    internal static decimal AskForDecimal(string question)
+    {
+        bool isDecimal = false;
+        decimal result = 0;
+        while (!isDecimal)
+        {
+            string? userInput = Ask(question);
+            isDecimal = decimal.TryParse(userInput, out result);
+
+            if (isDecimal)
+            {
+                Debug.WriteLine("Parsen gelukt!");
+            }
+            else
+            {
+                Debug.WriteLine("Parsen niet gelukt!");
+            }
+        }
+
+        return result;
+    }
+
     internal static void Wait()
     {
         Console.WriteLine("Press <ENTER> to continue...");

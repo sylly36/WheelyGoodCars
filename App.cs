@@ -23,6 +23,7 @@ namespace WheelyGoodCars
 
                 while (loggedInUser is User)
                 {
+                    Console.Clear();
                     string userChoice = Helpers.Choose("\nWhat do you want to do?", new string[] { "Show My Listings", "All Listings", "Add Listing", "Edit Listing", "Remove Listing", "Log Out", "Quit" });
 
                     switch (userChoice)
@@ -108,7 +109,72 @@ namespace WheelyGoodCars
 
         public void AddListing()
         {
+            Console.Clear();
+            Console.WriteLine("Add New Listing:");
 
+            User? user = loggedInUser;
+
+            string licensePlate = Helpers.AskNotEmpty("Whats the license plate?");
+            bool IsNew = VerifyLicensePlate(licensePlate);
+
+            if (IsNew == true) 
+            { 
+                string brand = Helpers.AskNotEmpty("Whats the brand name?");
+                decimal price =Helpers.AskForDecimal("Whats the price?");
+                int mileage = Helpers.AskForInt("Whats the mileage?");
+                string color = Helpers.AskNotEmpty("Whats the color?");
+
+                int? seats = null;
+                int? doors = null;
+                string wantsSeatsAndDoors = Helpers.AskNotEmpty("Do you want to add the amount of seats and doors? Yes/No");
+                if (wantsSeatsAndDoors == "yes")
+                {
+                    seats = Helpers.AskForInt("How many seats are there?");
+                    doors = Helpers.AskForInt("How many doors are there?");
+                }
+
+                int? productionYear = null;
+                string wantProductionYear = Helpers.AskNotEmpty("Do you want to add the production year? Yes/No");
+                if (wantProductionYear == "Yes")
+                {
+                    productionYear = Helpers.AskForInt("Whats the production year?");
+                }
+
+                int? weight = null;
+                string wantWeight = Helpers.AskNotEmpty("Do you want to add the weight? Yes/No");
+                if (wantWeight == "Yes")
+                {
+                    weight = Helpers.AskForInt("What the weight?");
+                }
+
+                Listing newListing = new Listing(brand, licensePlate, price, mileage, seats, doors, productionYear, weight, color);
+                newListing.UserListing = user;
+                context.Listings.Add(newListing);
+
+                context.SaveChanges();
+
+                Console.Clear();
+                Console.WriteLine("Listing has been made.");
+            }
+            else
+            {
+                Console.WriteLine("Car already exists!\n");          
+            }
+
+            Helpers.Wait();
+        }
+
+        public bool VerifyLicensePlate(string licensePlate)
+        {
+            List<Listing> listings = context.Listings.ToList();
+            foreach (Listing listing in listings)
+            {
+                if (listing.LicensePlate == licensePlate) 
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public void RemoveListing() 
@@ -137,6 +203,7 @@ namespace WheelyGoodCars
                 Console.Clear();
                 loggedInUser = user;
                 Console.WriteLine("Ingelogd!\n");
+                Helpers.Wait();
             }
         }
 
