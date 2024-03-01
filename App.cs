@@ -23,8 +23,7 @@ namespace WheelyGoodCars
 
                 while (loggedInUser is User)
                 {
-                    Console.Clear();
-                    string userChoice = Helpers.Choose("\nWhat do you want to do?", new string[] { "Show My Listings", "All Listings", "Add Listing", "Remove Listing", "Log Out", "Quit" });
+                    string userChoice = Helpers.Choose("\nWhat do you want to do?", new string[] { "Show My Listings", "All Listings", "Add Listing", "Edit Listing", "Remove Listing", "Log Out", "Quit" });
 
                     switch (userChoice)
                     {
@@ -36,6 +35,9 @@ namespace WheelyGoodCars
                             break;
                         case "Add Listing":
                             AddListing();
+                            break;
+                        case "Edit Listing":
+                            EditListing();
                             break;
                         case "Remove Listing":
                             RemoveListing();
@@ -54,7 +56,7 @@ namespace WheelyGoodCars
         public void ShowLoginMenu()
         {
             Console.Clear();
-            string userChoice = Helpers.Choose("What do you want to do?", new string[] { "Login", "Register", "Quit" });
+            string userChoice = Helpers.Choose("What do you want to do?", new string[] { "Login", "Register", "All Listings", "Quit" });
 
             switch (userChoice)
             {
@@ -63,6 +65,9 @@ namespace WheelyGoodCars
                     break;
                 case "Register":
                     Register();
+                    break;
+                case "All Listings":
+                    ShowAll();
                     break;
                 case "Quit":
                     isRunning = false;
@@ -91,6 +96,7 @@ namespace WheelyGoodCars
         public void ShowAll()
         {
             Console.Clear();
+            Console.WriteLine("All Listings:");
             List<Listing> listings = context.Listings.ToList();
 
             foreach (Listing listing in listings)
@@ -108,6 +114,11 @@ namespace WheelyGoodCars
         public void RemoveListing() 
         { 
         
+        }
+
+        public void EditListing()
+        {
+
         }
 
         public void Login()
