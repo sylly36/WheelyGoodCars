@@ -178,8 +178,40 @@ namespace WheelyGoodCars
         }
 
         public void RemoveListing() 
-        { 
-        
+        {
+            Listing selectedListing = SelectListing();
+
+            string userSure = Helpers.AskNotEmpty($"Are you sure you want to delete listing with id {selectedListing.Id}? yes/no");
+            if (userSure == "yes") 
+            {
+                context.Listings.Remove(selectedListing);
+                context.SaveChanges();
+
+                Console.WriteLine($"Listing with id {selectedListing.Id} has been deleted.");
+                Helpers.Wait();
+            }
+        }
+
+        public Listing SelectListing()
+        {
+            ShowMyListings();
+
+            int listingId;
+            Listing? selectedListing = null;
+            Listing? listing = null;
+
+            do
+            {
+                listingId = Helpers.AskForInt("\nEnter the id of the listing you wish to remove:");
+                selectedListing = context.Listings.Find(listingId);
+                if (selectedListing.UserListing == loggedInUser)
+                {
+                    listing = selectedListing;
+                }
+            }
+            while (listing  == null);
+
+            return listing;
         }
 
         public void EditListing()
