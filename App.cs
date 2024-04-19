@@ -170,36 +170,68 @@ namespace WheelyGoodCars
 
             User? user = loggedInUser;
 
+            Console.WriteLine("____________ 0%\n");
             string licensePlate = Helpers.AskNotEmpty("Whats the license plate?");
             bool IsNew = VerifyLicensePlate(licensePlate);
 
             if (IsNew == true) 
-            { 
+            {
+                Console.Clear();
+                Console.WriteLine("█___________ 9%\n");
                 string brand = Helpers.AskNotEmpty("Whats the brand name?");
+
+                Console.Clear();
+                Console.WriteLine("██__________ 18%\n");
                 decimal price =Helpers.AskForDecimal("Whats the price?");
+
+                Console.Clear();
+                Console.WriteLine("███_________ 27%\n");
                 int mileage = Helpers.AskForInt("Whats the mileage?");
+
+                Console.Clear();
+                Console.WriteLine("████________ 36%\n");
                 string color = Helpers.AskNotEmpty("Whats the color?");
 
                 int? seats = null;
                 int? doors = null;
+
+                Console.Clear();
+                Console.WriteLine("█████_______ 45%\n");
                 string wantsSeatsAndDoors = Helpers.AskNotEmpty("Do you want to add the amount of seats and doors? Yes/No");
                 if (wantsSeatsAndDoors == "yes")
                 {
+                    Console.Clear();
+                    Console.WriteLine("██████______ 54%\n");
                     seats = Helpers.AskForInt("How many seats are there?");
+
+                    Console.Clear();
+                    Console.WriteLine("███████_____ 63%\n");
                     doors = Helpers.AskForInt("How many doors are there?");
                 }
 
                 int? productionYear = null;
+
+                Console.Clear();
+                Console.WriteLine("████████____ 72%\n");
                 string wantProductionYear = Helpers.AskNotEmpty("Do you want to add the production year? Yes/No");
+
                 if (wantProductionYear == "Yes")
                 {
+                    Console.Clear();
+                    Console.WriteLine("█████████___ 81%\n");
                     productionYear = Helpers.AskForInt("Whats the production year?");
                 }
 
                 int? weight = null;
+
+                Console.Clear();
+                Console.WriteLine("██████████__ 90%\n");
                 string wantWeight = Helpers.AskNotEmpty("Do you want to add the weight? Yes/No");
+
                 if (wantWeight == "Yes")
                 {
+                    Console.Clear();
+                    Console.WriteLine("███████████_ 99%\n");
                     weight = Helpers.AskForInt("What the weight?");
                 }
 
@@ -210,6 +242,7 @@ namespace WheelyGoodCars
                 context.SaveChanges();
 
                 Console.Clear();
+                Console.WriteLine("████████████ 100%\n");
                 Console.WriteLine("Listing has been made.");
             }
             else
