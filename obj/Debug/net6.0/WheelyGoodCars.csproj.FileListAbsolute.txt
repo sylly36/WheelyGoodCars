@@ -36,3 +36,5 @@ C:\Users\Sylvester\OneDrive\School spullen\Blok D\Native\C#\WheelyGoodCars\obj\D
 C:\Users\Sylvester\OneDrive\School spullen\Blok D\Native\C#\WheelyGoodCars\obj\Debug\net6.0\WheelyGoodCars.pdb
 C:\Users\Sylvester\OneDrive\School spullen\Blok D\Native\C#\WheelyGoodCars\obj\Debug\net6.0\WheelyGoodCars.genruntimeconfig.cache
 C:\Users\Sylvester\OneDrive\School spullen\Blok D\Native\C#\WheelyGoodCars\obj\Debug\net6.0\ref\WheelyGoodCars.dll
+C:\Users\Sylvester\OneDrive\School spullen\Blok D\Native\C#\WheelyGoodCars\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\Sylvester\OneDrive\School spullen\Blok D\Native\C#\WheelyGoodCars\bin\Debug\net6.0\itextsharp.dll

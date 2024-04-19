@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using WheelyGoodCars.Model;
 using WheelyGoodCars.Data;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System.Runtime.ConstrainedExecution;
+using iTextSharp.text.pdf;
 
 namespace WheelyGoodCars
 {
@@ -91,7 +94,18 @@ namespace WheelyGoodCars
                     Console.WriteLine(listing);
                 }            
             }
-            Helpers.Wait();
+            Console.WriteLine("\n");
+            string userChoice = Helpers.Choose("What do you want to do?", new string[] { "Export data", "Go back" });
+
+            switch (userChoice)
+            {
+                case "Export data":
+                    ExportData();
+                    break;
+                case "Go back":
+                    isRunning = false;
+                    break;
+            }
         }
 
         public void ShowAll()
@@ -104,6 +118,48 @@ namespace WheelyGoodCars
             {
                 Console.WriteLine(listing);
             }
+
+            Helpers.Wait();
+            
+        }
+
+        public void ExportData()
+        {
+            Document document = new Document();
+
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string pdfFilePath = Path.Combine(desktopPath, "MyListings.pdf");
+            PdfWriter.GetInstance(document, new FileStream(pdfFilePath, FileMode.Create));
+
+            document.Open();
+
+            List<Listing> listings = context.Listings.ToList();
+            string userListingId = loggedInUser.Id.ToString();
+
+            foreach (Listing listing in listings)
+            {
+                string listingUser = listing.UserListing.ToString();
+
+                if (listingUser == userListingId)
+                {
+                    document.Add(new Paragraph($"-----------------------------------------------"));
+                    document.Add(new Paragraph($"{listing.Brand}        Kentekenplaat:{listing.LicensePlate}"));
+                    document.Add(new Paragraph($"               Prijs:{listing.Price}\n"));
+                    document.Add(new Paragraph($"               Gemaakt in:{listing.ProductionYear}"));
+                    document.Add(new Paragraph($" "));
+                    document.Add(new Paragraph($"Kleur:{listing.Color}      Mileage:{listing.Mileage}"));
+                    if (listing.Seats != null || listing.Doors != null)
+                    {
+                        document.Add(new Paragraph($"Deuren:{listing.Doors}         Zitplekken:{listing.Seats}"));
+                    }
+                }
+                
+            }
+            document.Add(new Paragraph($"-----------------------------------------------"));
+
+            document.Close();
+
+            Console.WriteLine("Data Exported: MyListings.pdf created on desktop");
             Helpers.Wait();
         }
 
