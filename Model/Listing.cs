@@ -18,9 +18,10 @@ namespace WheelyGoodCars.Model
         public int? ProductionYear { get; set; }
         public int? Weight { get; set; }
         public string Color { get; set; }
+        public string Status { get; set; }
         public User UserListing { get; set; }
 
-        public Listing(string brand, string licensePlate, decimal price, int mileage, int? seats, int? doors, int? productionYear, int? weight, string color) 
+        public Listing(string brand, string licensePlate, decimal price, int mileage, int? seats, int? doors, int? productionYear, int? weight, string color, string Status) 
         { 
             this.Brand = brand;
             this.LicensePlate = licensePlate;
@@ -31,6 +32,7 @@ namespace WheelyGoodCars.Model
             this.ProductionYear = productionYear;
             this.Weight = weight;
             this.Color = color;
+            this.Status = Status;
             this.UserListing = UserListing;
         }
 

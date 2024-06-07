@@ -39,11 +39,13 @@ namespace WheelyGoodCars.Data
             Users.Add(a4);
             Users.Add(a5);
 
-            Listing b1 = new Listing("Volvo", "AB-1234", 15000, 9000, null, 5, 2006, 100, "green");
-            Listing b2 = new Listing("Volkswagen", "AB-123-CD", 3, 1272, 4, null, 2018, 112, "green");
-            Listing b3 = new Listing("Toyota", "12-AB-34", 35000, 19811, null, null, null, 109, "geel");
-            Listing b4 = new Listing("Ciat", "123-AB-4", 2000, 771, null, 5, 15, 89, "blauw");
-            Listing b5 = new Listing("Skoda", "AB-12-34", 1000, 4, 4, 5, null, 210, "paars");
+            string status = "beschikbaar";
+
+            Listing b1 = new Listing("Volvo", "AB-1234", 15000, 9000, null, 5, 2006, 100, "green", status);
+            Listing b2 = new Listing("Volkswagen", "AB-123-CD", 3, 1272, 4, null, 2018, 112, "green", status);
+            Listing b3 = new Listing("Toyota", "12-AB-34", 35000, 19811, null, null, null, 109, "geel", status);
+            Listing b4 = new Listing("Ciat", "123-AB-4", 2000, 771, null, 5, 15, 89, "blauw", status);
+            Listing b5 = new Listing("Skoda", "AB-12-34", 1000, 4, 4, 5, null, 210, "paars", status);
 
             Listings.Add(b1);
             Listings.Add(b2); 

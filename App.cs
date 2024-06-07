@@ -9,6 +9,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Runtime.ConstrainedExecution;
 using iTextSharp.text.pdf;
+using System.Reflection;
 
 namespace WheelyGoodCars
 {
@@ -247,7 +248,9 @@ namespace WheelyGoodCars
                     weight = Helpers.AskForInt("What the weight?");
                 }
 
-                Listing newListing = new Listing(brand, licensePlate, price, mileage, seats, doors, productionYear, weight, color);
+                string status = "Beschikbaar";
+
+                Listing newListing = new Listing(brand, licensePlate, price, mileage, seats, doors, productionYear, weight, color, status);
                 newListing.UserListing = user;
                 context.Listings.Add(newListing);
 
@@ -317,7 +320,36 @@ namespace WheelyGoodCars
 
         public void EditListing()
         {
+            Console.Clear();
+            Listing selectedListing = SelectListing();
 
+            string editSure = Helpers.AskNotEmpty("Do you want to edit the price? yes/no");
+            if (editSure == "yes") 
+            {
+                selectedListing.Price = Helpers.AskForDecimal($"old price: {selectedListing.Price} | New price:");
+                context.Entry(selectedListing).Property(l => l.Price).IsModified = true;
+            }
+
+            Console.Clear();
+            editSure = Helpers.AskNotEmpty("Do you want to edit the status? yes/no");
+            if (editSure == "yes")
+            {
+                int a = 0;
+                do
+                {
+                    selectedListing.Status = Helpers.AskNotEmpty($"Old status: {selectedListing.Status} | New Status:");
+                    if (selectedListing.Status == "beschikbaar" || selectedListing.Status == "verkocht")
+                    {
+                        
+                        a = 1;
+                    }
+                }
+                while (a == 0);
+
+                context.Entry(selectedListing).Property(l => l.Price).IsModified = true;
+            }
+            
+            context.SaveChanges();        
         }
 
         public void Login()

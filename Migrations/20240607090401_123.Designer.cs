@@ -11,8 +11,8 @@ using WheelyGoodCars.Data;
 namespace WheelyGoodCars.Migrations
 {
     [DbContext(typeof(CarsAppContext))]
-    [Migration("20240223095341_Add everything")]
-    partial class Addeverything
+    [Migration("20240607090401_123")]
+    partial class _123
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,10 @@ namespace WheelyGoodCars.Migrations
 
                     b.Property<int?>("Seats")
                         .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("UserListingId")
                         .HasColumnType("int");

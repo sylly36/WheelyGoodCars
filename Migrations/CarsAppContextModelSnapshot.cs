@@ -52,6 +52,10 @@ namespace WheelyGoodCars.Migrations
                     b.Property<int?>("Seats")
                         .HasColumnType("int");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("UserListingId")
                         .HasColumnType("int");
 
