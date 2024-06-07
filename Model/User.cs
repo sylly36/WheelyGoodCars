@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace WheelyGoodCars.Model
 {
@@ -15,9 +11,9 @@ namespace WheelyGoodCars.Model
 
         public User(string username, string password)
         {
-            this.Username = username;
-            this.Password = password;
-            this.Listings = new List<Listing>();
+            Username = username;
+            Password = password;
+            Listings = new List<Listing>();
         }
 
         public override string ToString()

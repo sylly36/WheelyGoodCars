@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WheelyGoodCars.Model
 {
@@ -19,30 +15,30 @@ namespace WheelyGoodCars.Model
         public int? Weight { get; set; }
         public string Color { get; set; }
         public string Status { get; set; }
+        public int UserId { get; set; }
         public User UserListing { get; set; }
 
-        public Listing(string brand, string licensePlate, decimal price, int mileage, int? seats, int? doors, int? productionYear, int? weight, string color, string Status) 
-        { 
-            this.Brand = brand;
-            this.LicensePlate = licensePlate;
-            this.Price = price;
-            this.Mileage = mileage;
-            this.Seats = seats;
-            this.Doors = doors;
-            this.ProductionYear = productionYear;
-            this.Weight = weight;
-            this.Color = color;
-            this.Status = Status;
-            this.UserListing = UserListing;
+        public Listing(string brand, string licensePlate, decimal price, int mileage, int? seats, int? doors, int? productionYear, int? weight, string color, string status)
+        {
+            Brand = brand;
+            LicensePlate = licensePlate;
+            Price = price;
+            Mileage = mileage;
+            Seats = seats;
+            Doors = doors;
+            ProductionYear = productionYear;
+            Weight = weight;
+            Color = color;
+            Status = status;
         }
 
         public override string ToString()
         {
             if (ProductionYear != null)
             {
-                return $"{Id} | {Brand}({LicensePlate}) in {Color}, Cost: {Price}, Milage: {Mileage}, Made in: {ProductionYear}";
+                return $"{Id} | {Brand} ({LicensePlate}) in {Color}, Cost: {Price}, Mileage: {Mileage}, Made in: {ProductionYear}";
             }
-            return $"{Id} | {Brand}({LicensePlate}) in {Color}, Cost: {Price}, Milage: {Mileage}";
+            return $"{Id} | {Brand} ({LicensePlate}) in {Color}, Cost: {Price}, Mileage: {Mileage}";
         }
     }
 }

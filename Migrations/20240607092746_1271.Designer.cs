@@ -11,8 +11,8 @@ using WheelyGoodCars.Data;
 namespace WheelyGoodCars.Migrations
 {
     [DbContext(typeof(CarsAppContext))]
-    [Migration("20240607090401_123")]
-    partial class _123
+    [Migration("20240607092746_1271")]
+    partial class _1271
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,7 @@ namespace WheelyGoodCars.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UserListingId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Weight")
@@ -67,7 +67,7 @@ namespace WheelyGoodCars.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserListingId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Listings");
                 });
@@ -95,7 +95,7 @@ namespace WheelyGoodCars.Migrations
                 {
                     b.HasOne("WheelyGoodCars.Model.User", "UserListing")
                         .WithMany("Listings")
-                        .HasForeignKey("UserListingId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

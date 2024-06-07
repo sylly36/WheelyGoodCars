@@ -321,7 +321,39 @@ namespace WheelyGoodCars
         public void EditListing()
         {
             Console.Clear();
-            Listing selectedListing = SelectListing();
+
+            Console.Clear();
+            Console.WriteLine("Your listings:");
+            List<Listing> listings = context.Listings.ToList();
+            string userListingId = loggedInUser.Id.ToString();
+
+            foreach (Listing listing1 in listings)
+            {
+                string listingUser = listing1.UserListing.ToString();
+
+                if (listingUser == userListingId)
+                {
+                    Console.WriteLine(listing1);
+                }
+            }
+            Console.WriteLine("\n");
+
+            int listingId;
+            Listing? selectedListing = null;
+            Listing? listing = null;
+
+            do
+            {
+                listingId = Helpers.AskForInt("\nEnter the id of the listing you wish to edit:");
+                selectedListing = context.Listings.Find(listingId);
+                if (selectedListing.UserListing == loggedInUser)
+                {
+                    listing = selectedListing;
+                }
+            }
+            while (listing == null);
+
+            selectedListing = listing;
 
             string editSure = Helpers.AskNotEmpty("Do you want to edit the price? yes/no");
             if (editSure == "yes") 

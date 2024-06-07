@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WheelyGoodCars.Migrations
 {
     /// <inheritdoc />
-    public partial class _123 : Migration
+    public partial class _1271 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,14 +51,14 @@ namespace WheelyGoodCars.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Status = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserListingId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Listings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Listings_Users_UserListingId",
-                        column: x => x.UserListingId,
+                        name: "FK_Listings_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -66,9 +66,9 @@ namespace WheelyGoodCars.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Listings_UserListingId",
+                name: "IX_Listings_UserId",
                 table: "Listings",
-                column: "UserListingId");
+                column: "UserId");
         }
 
         /// <inheritdoc />

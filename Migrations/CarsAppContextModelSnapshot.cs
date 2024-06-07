@@ -56,7 +56,7 @@ namespace WheelyGoodCars.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UserListingId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Weight")
@@ -64,7 +64,7 @@ namespace WheelyGoodCars.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserListingId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Listings");
                 });
@@ -92,7 +92,7 @@ namespace WheelyGoodCars.Migrations
                 {
                     b.HasOne("WheelyGoodCars.Model.User", "UserListing")
                         .WithMany("Listings")
-                        .HasForeignKey("UserListingId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
