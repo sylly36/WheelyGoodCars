@@ -16,6 +16,18 @@ namespace WheelyGoodCars
     {
         bool isRunning = true;
         CarsAppContext context = new CarsAppContext();
+
+        public App() 
+        { 
+            context = new CarsAppContext();
+
+            if (context.Users.ToList().Count == 0)
+            {
+                context.Seeder();
+            }
+        }
+
+
         public static User? loggedInUser;
 
         internal void Run()
@@ -228,7 +240,7 @@ namespace WheelyGoodCars
                 Console.WriteLine("██████████__ 90%\n");
                 string wantWeight = Helpers.AskNotEmpty("Do you want to add the weight? Yes/No");
 
-                if (wantWeight == "Yes")
+                if (wantWeight == "yes")
                 {
                     Console.Clear();
                     Console.WriteLine("███████████_ 99%\n");
